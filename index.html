@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
+		<style>
+
+			body {
+				text-align: center;
+				font-family: Lato, sans-serif;
+			}
+
+			h2 {
+				font-weight: 900;
+				font-size: 2em;
+				margin-top: 15vh;
+			}
+
+			ul {
+				list-style: none;
+				padding: 0;
+				font-size: 1.3em;
+			}
+
+			li {
+				margin : 0.5em 0;
+			}
+
+			a {
+				display: inline-block;
+				text-decoration: none;
+				color: #fff;
+				padding: 0.5em 1em;
+				background: teal;
+			}
+
+		</style>
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body>
+		<h2 id="question"></h2>
+		<ul id="answers"></ul>    	
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+        	var tree = {
+        		'Where are you?' : {
+    				'Kensington' : {
+    					'Do you like dive bars?' : {
+    						'Yes' : ['Regal Beagle'],
+    						'No' : {
+    							'Do you lift, bro?' : {
+    								'Yes' : ['Molly Malone\'s'],
+    								'No' : {
+    									'Are you fancy?' : {
+    										'Yes' : ['Winebar'],
+    										'No' : {
+    											'Are you quirky?' : {
+    												'Yes' : ['Container Bar'],
+    												'No' : ['Kensington Pub', 'Yardhouse', 'Original Joe\'s']
+    											}
+    										}
+    									}
+    								}
+    							}
+    						}
+    					}
+    				},
+    				'North': {
+    					'Are you a student' : {
+    						'Yes' : ['Kilkenny'],
+    						'No' : {
+    							'Are you a mild mannered suburbanite?' : {
+    								'Yes' : ['Brewhouse'],
+    								'No' : {
+    									'Do you work with your hands?' : {
+    										'Yes' : ['Black Bull'],
+    										'No' : {
+    											'Are you at the airport' : {
+    												'Yes' : 'Molson Brew House',
+    												'No' : 'Woody\'s'
+    											}
+    										}
+    									}
+    								}
+								}
+    						}
+    					}
+    				},
+    				'South' : [
+    					'Jack Astor\'s',
+    					'1600 Bier Haus',
+    					'Kildare\'s',
+    					'Limerick\'s',
+    					'Murmur'
+    				]
+    			}
+        	}
+
+        	var answers;
+
+        	$(document).ready( function() {
+        		populate(tree);
+
+        	});
+
+        	function select(index) {
+        		if(!Array.isArray(answers[index])) {
+        			populate(answers[index]);
+        		} else {
+        			finish(answers[index]);
+        		};
+        	}
+
+        	function populate(newTree) {
+        		var keys = Object.keys(newTree);
+        		var question = keys[0];
+        		console.log(question);
+        		$('#question').html(question);
+        		answers = newTree[question];
+        		answerList = ''
+        		$.each(answers, function(index, value) {
+        			answerList += '<li class="question"><a href="" onClick="event.preventDefault(); select(\''+ index +'\');" >'+ index + '</a></li>';
+        		});
+        		$('#answers').html(answerList);
+        	}
+
+        	function finish(bars) {
+        		console.log(bars);
+        		$('#question').html("You should go to:");
+        		var barList= '';
+        		$.each(bars, function(index, value) {
+
+        			barList += '<li class="bar">' + value + '</li>';
+        		});
+        		$('#answers').html(barList);
+        	}
+        </script>
+    </body>
+</html>
+
