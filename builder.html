@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        <!--<link rel="stylesheet" href="css/main.css"> -->
+    </head>
+    <body>
+		<main id="inputs">
+			<form id="form" data-question-id="0">
+				<label for="question-0">Question:</label>
+				<input type="text" name="question-0" id="question-0">
+				<div class="answer-wrapper" data-answer-id="0">
+					<label for="answer-0-0">Answer:</label>
+					<input type="text" id="answer-0-0" name="answer-0-0">
+				</div>
+				<div class="answer-wrapper" data-answer-id="1">
+					<label for="answer-0-1">Answer:</label>
+					<input type="text" id="answer-0-1" name="answer-0-1">
+				</div>
+				<button onClick="addAnswer(event);">Add Answer</button>
+			</form>
+			<button onClick="addQuestion(event);">Add Question</button>
+		</main>
+		<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script>
+			function addAnswer(event) {
+				event.preventDefault();
+
+				var question = $(event.target).parent().data('question-id');
+				var lastAnswer = $(event.target).prev().data('answer-id');
+				
+				var newAnswer = createAnswer(question, lastAnswer + 1);
+
+				$(event.target).before(newAnswer);
+			}
+
+			function createAnswer(question, answer, returnString = false) {
+				var string = `<div class="answer-wrapper" data-answer-id="${answer}">\
+							<label for="answer-${question}-${answer}">Answer: </label>\
+							<input type="text" id="answer-${question}-${answer}" name="answer-${question}-${answer}">\
+						</div>`
+				if (returnString) {
+					return string;
+				}
+
+				return $(string);
+			}
+
+			function addQuestion(event) {
+				event.preventDefault();
+				var lastQuestion = $(event.target).prev().data('question-id');
+
+				var newQuestion = createQuestion(lastQuestion + 1);
+
+				$(event.target).before(newQuestion);
+			}
+
+			function createQuestion(id) {
+				return $(`<form id="form" data-question-id="${id}">\
+							<label for="question-${id}">Question:</label>\
+							<input type="text" name="question-${id}" id="question-${id}">` +
+							createAnswer(id, 0, true) + createAnswer(id, 1, true) +
+							'<button onClick="addAnswer(event);">Add Answer</button>\
+						</form>');
+			}
+
+			function generateUUID(){
+			    var d = new Date().getTime();
+			    if(window.performance && typeof window.performance.now === "function"){
+			        d += performance.now(); //use high-precision timer if available
+			    }
+			    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+			        var r = (d + Math.random()*16)%16 | 0;
+			        d = Math.floor(d/16);
+			        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+			    });
+			    return uuid;
+			}
+
+		</script>
+    </body>
+</html>
