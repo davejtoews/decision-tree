@@ -52,90 +52,107 @@
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
-        	var tree = {
-        		'Where are you?' : {
-    				'Kensington' : {
-    					'Do you like dive bars?' : {
-    						'Yes' : ['Regal Beagle'],
-    						'No' : {
-    							'Do you lift, bro?' : {
-    								'Yes' : ['Molly Malone\'s'],
-    								'No' : {
-    									'Are you fancy?' : {
-    										'Yes' : ['Winebar'],
-    										'No' : {
-    											'Are you quirky?' : {
-    												'Yes' : ['Container Bar'],
-    												'No' : ['Kensington Pub', 'Yardhouse', 'Original Joe\'s']
-    											}
-    										}
-    									}
-    								}
-    							}
-    						}
-    					}
-    				},
-    				'North': {
-    					'Are you a student' : {
-    						'Yes' : ['Kilkenny'],
-    						'No' : {
-    							'Are you a mild mannered suburbanite?' : {
-    								'Yes' : ['Brewhouse'],
-    								'No' : {
-    									'Do you work with your hands?' : {
-    										'Yes' : ['Black Bull'],
-    										'No' : {
-    											'Are you at the airport' : {
-    												'Yes' : 'Molson Brew House',
-    												'No' : 'Woody\'s'
-    											}
-    										}
-    									}
-    								}
-								}
-    						}
-    					}
-    				},
-    				'South' : [
-    					'Jack Astor\'s',
-    					'1600 Bier Haus',
-    					'Kildare\'s',
-    					'Limerick\'s',
-    					'Murmur'
-    				]
-    			}
-        	}
+
+            var questions = {
+                '0': {
+                    'question' : 'Where are you?',
+                    'answers' : {
+                        'Kensington' : '1',
+                        'North': '5',
+                        'South' : [
+                            'Jack Astor\'s',
+                            '1600 Bier Haus',
+                            'Kildare\'s',
+                            'Limerick\'s',
+                            'Murmur'
+                        ]
+                    }
+
+                },
+                '1' : {
+                    'question' : 'Do you like dive bars?',
+                    'answers' : {
+                        'Yes' : ['Regal Beagle'],
+                        'No' : '2' 
+                    }
+                },
+                '2' : {
+                    'question' : 'Do you lift, bro?',
+                    'answers' : {
+                        'Yes' : ['Molly Malone\'s'],
+                        'No' : '3'
+                    }
+                },
+                '3' : {
+                    'question' : 'Are you fancy?',
+                    'answers' : {
+                        'Yes' : ['Winebar'],
+                        'No' : '4'
+                    }               
+                },
+                '4' : {
+                    'question' : 'Are you quirky?',
+                    'answers' : {
+                        'Yes' : ['Container Bar'],
+                        'No' : ['Kensington Pub', 'Yardhouse', 'Original Joe\'s']
+                    }
+                },
+                '5' : {
+                    'question' : 'Are you a student',
+                    'answers' : {
+                        'Yes' : ['Kilkenny'],
+                        'No' : '6'
+                    }
+                },
+                '6' : {
+                    'question' : 'Are you a mild mannered suburbanite?',
+                    'answers' : {
+                        'Yes' : ['Brewhouse'],
+                        'No' :  '7'
+                    }                  
+                },
+                '7' : {
+                    'question' : 'Do you work with your hands?',
+                    'answers' : {
+                        'Yes' : ['Black Bull'],
+                        'No' : '8'
+                    }                   
+                },
+                '8' : {
+                    'question' : 'Are you at the airport',
+                    'answers' : {
+                        'Yes' : ['Molson Brew House'],
+                        'No' : ['Woody\'s']
+                    }                    
+                }
+            }
 
         	var answers;
 
         	$(document).ready( function() {
-        		populate(tree);
-
+        		populate(questions, '0');
         	});
 
         	function select(index) {
         		if(!Array.isArray(answers[index])) {
-        			populate(answers[index]);
+        			populate(questions, answers[index]);
         		} else {
         			finish(answers[index]);
         		};
         	}
 
-        	function populate(newTree) {
-        		var keys = Object.keys(newTree);
-        		var question = keys[0];
-        		console.log(question);
-        		$('#question').html(question);
-        		answers = newTree[question];
-        		answerList = ''
-        		$.each(answers, function(index, value) {
-        			answerList += '<li class="question"><a href="" onClick="event.preventDefault(); select(\''+ index +'\');" >'+ index + '</a></li>';
-        		});
-        		$('#answers').html(answerList);
-        	}
+            function populate(question, questionId) {
+                var node = question[questionId];
+                $('#question').html(node.question);
+                answerList = ''
+                answers = node.answers;
+                $.each(answers, function(index, value) {
+                    answerList += '<li class="question"><a href="" onClick="event.preventDefault(); select(\''+ index +'\');" >'+ index + '</a></li>';
+                });
+                $('#answers').html(answerList);           
+            }
 
         	function finish(bars) {
-        		console.log(bars);
         		$('#question').html("You should go to:");
         		var barList= '';
         		$.each(bars, function(index, value) {
