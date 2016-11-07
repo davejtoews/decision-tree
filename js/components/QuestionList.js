@@ -15,7 +15,10 @@ const QuestionList = ({ questions }) => (
 QuestionList.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    answers: PropTypes.arrayOf(PropTypes.shape({
+      text: PropTypes.string.isRequired
+    }))
   }).isRequired).isRequired
 }
 

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react'
 import AddQuestion from '../containers/AddQuestion';
-import QuestionList from '../components/QuestionList';
+import QuestionListContainer from '../containers/QuestionListContainer';
 import { connect } from 'react-redux';
 
 const App = () => (
   <div>
     <AddQuestion />
-    <QuestionList questions={this.state.questions}/>
+    <QuestionListContainer />
   </div>
 )
 
