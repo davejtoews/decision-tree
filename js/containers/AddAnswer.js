@@ -1,8 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addQuestion } from '../actions'
+import { addAnswer } from '../actions'
 
-let AddQuestion = ({ dispatch }) => {
+const mapStateToProps = (state, ownProps) => {
+  return {
+    questionId: ownProps.questionId
+  }
+}
+
+let AddAnswer = ({ dispatch, questionId }) => {
   let input
   return (
     <div>
@@ -11,19 +17,19 @@ let AddQuestion = ({ dispatch }) => {
         if (!input.value.trim()) {
           return
         }
-        dispatch(addQuestion(input.value))
+        dispatch(addAnswer(questionId, input.value))
         input.value = ''
       }}>
         <input ref={node => {
           input = node
         }} />
         <button type="submit">
-          Add Question
+          Add Answer
         </button>
       </form>
     </div>
   )
 }
-AddQuestion = connect()(AddQuestion)
+AddAnswer = connect(mapStateToProps)(AddAnswer)
 
-export default AddQuestion;
+export default AddAnswer;

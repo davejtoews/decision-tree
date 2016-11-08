@@ -9,7 +9,9 @@ const Answer = ({ text }) => {
 }
 
 Answer.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  nextQuestionId: PropTypes.number
+
 }
 
 export default Answer

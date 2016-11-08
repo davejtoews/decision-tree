@@ -13,3 +13,6 @@ render(
   </Provider>,
   document.getElementById('root')
 )
+//setInterval(function(){
+//	console.log(store.getState());
+//}, 3000);
