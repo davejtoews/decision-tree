@@ -11,10 +11,13 @@ const answer = (state = {}, action) => {
         text: action.text
       }
     case 'NEXT_QUESTION':
-      return {
-        id: state.id,
-        text: state.text,
-        nextQuestionId: action.questionId
+      if (state.id === action.answerId) {
+        const nextQuestionId = (action.questionId === -1) ? undefined : action.questionId;
+        return {
+          id: state.id,
+          text: state.text,
+          nextQuestionId: nextQuestionId
+        }        
       }
     default:
       return state

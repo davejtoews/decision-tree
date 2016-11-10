@@ -11,23 +11,21 @@ const mapStateToProps = (state, ownProps) => {
 let AddAnswer = ({ dispatch, questionId }) => {
   let input
   return (
-    <div>
-      <form onSubmit={e => {
-        e.preventDefault()
-        if (!input.value.trim()) {
-          return
-        }
-        dispatch(addAnswer(questionId, input.value))
-        input.value = ''
-      }}>
-        <input ref={node => {
-          input = node
-        }} />
-        <button type="submit">
-          Add Answer
-        </button>
-      </form>
-    </div>
+    <form onSubmit={e => {
+      e.preventDefault()
+      if (!input.value.trim()) {
+        return
+      }
+      dispatch(addAnswer(questionId, input.value))
+      input.value = ''
+    }}>
+      <input ref={node => {
+        input = node
+      }} />
+      <button type="submit">
+        Add Answer
+      </button>
+    </form>
   )
 }
 AddAnswer = connect(mapStateToProps)(AddAnswer)

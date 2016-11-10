@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react';
-import NextQuestionForm from '../containers/NextQuestionForm';
+import NextQuestionSelect from '../containers/NextQuestionSelect';
 
 const Answer = ({ id, text, nextQuestionId }) => {
-	let nextQuestion;
-	if (nextQuestionId) {
-		nextQuestion = <a href={"#q" + nextQuestionId}>{nextQuestionId}</a>
-	} else {
-		nextQuestion = <NextQuestionForm answerId={id} />
+	let nextQuestionLink = '';
+	if (nextQuestionId !== undefined) {
+		nextQuestionLink = <a href={"#q" + nextQuestionId}>Go To</a>
 	}
 	return (
 	  <li>
 	    {text}
-	    {nextQuestion}
+	    <NextQuestionSelect answerId={id} questionId={nextQuestionId} />
+	    {nextQuestionLink}
 	  </li>
 	)
 }
