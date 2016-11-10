@@ -4,7 +4,7 @@ import AnswerListContainer from '../containers/AnswerListContainer';
 
 const Question = ({ id, text, answers }) => {
 	return (
-		<li>
+		<li id={"q" + id}>
 		  {id + ': ' + text}
 		  <AddAnswer questionId={id}/>
 		<AnswerListContainer questionId={id} />

@@ -12,6 +12,10 @@ const answers = (state = [], action) => {
         ...state,
         answer(undefined, action)
       ]
+    case 'NEXT_QUESTION':
+      return state.map(q =>
+        answer(q, action)
+      )
     default:
       return state
   }

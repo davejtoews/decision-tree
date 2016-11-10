@@ -17,3 +17,11 @@ export const addAnswer = (questionId, text) => {
 		text
 	}
 }
+
+export const nextQuestion = (answerId, questionId) => {
+	return {
+		type: 'NEXT_QUESTION',
+		answerId: answerId,
+		questionId: questionId
+	}
+}

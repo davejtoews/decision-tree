@@ -10,6 +10,12 @@ const answer = (state = {}, action) => {
         id: action.id,
         text: action.text
       }
+    case 'NEXT_QUESTION':
+      return {
+        id: state.id,
+        text: state.text,
+        nextQuestionId: action.questionId
+      }
     default:
       return state
   }
