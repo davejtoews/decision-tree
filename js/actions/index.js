@@ -1,18 +1,19 @@
-let nextQuestionId = 0
+let nextId = 0
 
 export const addQuestion = (text) => {
   return {
     type: 'ADD_QUESTION',
-    id: nextQuestionId++,
+    id: nextId++,
     text,
     answers: []
   }
 }
 
-export const addAnswer = (id, text) => {
+export const addAnswer = (questionId, text) => {
 	return {
 		type: 'ADD_ANSWER',
-		id,
+		id: nextId++,
+		questionId: questionId,
 		text
 	}
 }

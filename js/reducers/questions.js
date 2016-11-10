@@ -1,18 +1,4 @@
-const answer = (state = {}, action) => {
-  console.log({
-    function: 'answer',
-     state: state,
-     action: action
-  });  
-  switch (action.type) {
-    case 'ADD_ANSWER':
-      return {
-        text: action.text
-      }
-    default:
-      return state
-  }
-}
+import answer from './answer';
 
 const question = (state = {}, action) => {
   console.log({
@@ -28,7 +14,7 @@ const question = (state = {}, action) => {
         answers: []
       }
     case 'ADD_ANSWER':
-      if (state.id !== action.id) {
+      if (state.id !== action.questionId) {
         return state
       }
       return {
@@ -36,7 +22,7 @@ const question = (state = {}, action) => {
         text: state.text,
         answers: [
           ...state.answers,
-          answer(undefined, action)
+          answer(undefined, action).id
         ]
       }
     default:
@@ -65,4 +51,4 @@ const questions = (state = [], action) => {
   }
 }
 
-export default questions
+export default questions;
