@@ -25,3 +25,11 @@ export const nextQuestion = (answerId, questionId) => {
 		questionId: questionId
 	}
 }
+
+export const addResult = (text) => {
+	return {
+		type: 'ADD_RESULT',
+		id: nextId++,
+		text
+	}
+}
