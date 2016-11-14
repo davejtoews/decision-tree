@@ -16,6 +16,10 @@ const answers = (state = [], action) => {
       return state.map(q =>
         answer(q, action)
       )
+    case 'NEXT_RESULT':
+      return state.map(q =>
+        answer(q, action)
+      )
     default:
       return state
   }

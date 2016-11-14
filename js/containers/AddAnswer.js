@@ -19,9 +19,13 @@ let AddAnswer = ({ dispatch, questionId }) => {
       dispatch(addAnswer(questionId, input.value))
       input.value = ''
     }}>
-      <input ref={node => {
+      <select ref={node => {
         input = node
-      }} />
+      }}>
+        <option value=''>[Select]</option>
+        <option value='question'>Question</option>
+        <option value='result'>Result</option>
+      </select>
       <button type="submit">
         Add Answer
       </button>

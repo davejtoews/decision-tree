@@ -9,12 +9,12 @@ export const addQuestion = (text) => {
   }
 }
 
-export const addAnswer = (questionId, text) => {
+export const addAnswer = (questionId, path) => {
 	return {
 		type: 'ADD_ANSWER',
 		id: nextId++,
 		questionId: questionId,
-		text
+		path
 	}
 }
 
@@ -31,5 +31,13 @@ export const addResult = (text) => {
 		type: 'ADD_RESULT',
 		id: nextId++,
 		text
+	}
+}
+
+export const nextResult = (answerId, resultId) => {
+	return {
+		type: 'NEXT_RESULT',
+		answerId: answerId,
+		resultId: resultId
 	}
 }
