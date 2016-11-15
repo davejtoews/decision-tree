@@ -1,4 +1,4 @@
-let nextId = 0
+let nextId = 0;
 
 export const addQuestion = (text) => {
   return {
@@ -39,6 +39,6 @@ export const nextResult = (answerId, resultIds) => {
 	return {
 		type: 'NEXT_RESULT',
 		answerId: answerId,
-		resultIds: resultId
+		resultIds: resultIds
 	}
 }

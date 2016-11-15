@@ -53,111 +53,340 @@
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
 
-            var questions = {
-                '0': {
-                    'question' : 'Where are you?',
-                    'answers' : {
-                        'Kensington' : '1',
-                        'North': '5',
-                        'South' : [
-                            'Jack Astor\'s',
-                            '1600 Bier Haus',
-                            'Kildare\'s',
-                            'Limerick\'s',
-                            'Murmur'
-                        ]
-                    }
-
-                },
-                '1' : {
-                    'question' : 'Do you like dive bars?',
-                    'answers' : {
-                        'Yes' : ['Regal Beagle'],
-                        'No' : '2' 
-                    }
-                },
-                '2' : {
-                    'question' : 'Do you lift, bro?',
-                    'answers' : {
-                        'Yes' : ['Molly Malone\'s'],
-                        'No' : '3'
-                    }
-                },
-                '3' : {
-                    'question' : 'Are you fancy?',
-                    'answers' : {
-                        'Yes' : ['Winebar'],
-                        'No' : '4'
-                    }               
-                },
-                '4' : {
-                    'question' : 'Are you quirky?',
-                    'answers' : {
-                        'Yes' : ['Container Bar'],
-                        'No' : ['Kensington Pub', 'Yardhouse', 'Original Joe\'s']
-                    }
-                },
-                '5' : {
-                    'question' : 'Are you a student',
-                    'answers' : {
-                        'Yes' : ['Kilkenny'],
-                        'No' : '6'
-                    }
-                },
-                '6' : {
-                    'question' : 'Are you a mild mannered suburbanite?',
-                    'answers' : {
-                        'Yes' : ['Brewhouse'],
-                        'No' :  '7'
-                    }                  
-                },
-                '7' : {
-                    'question' : 'Do you work with your hands?',
-                    'answers' : {
-                        'Yes' : ['Black Bull'],
-                        'No' : '8'
-                    }                   
-                },
-                '8' : {
-                    'question' : 'Are you at the airport',
-                    'answers' : {
-                        'Yes' : ['Molson Brew House'],
-                        'No' : ['Woody\'s']
-                    }                    
-                }
-            }
-
-        	var answers;
+            var tree = {
+              "questions": [
+              {
+                  "id": 17,
+                  "text": "Where are you?",
+                  "answers": [
+                  18,
+                  19,
+                  28
+                  ]
+              },
+              {
+                  "id": 20,
+                  "text": "Do you like dive bars?",
+                  "answers": [
+                  29,
+                  30
+                  ]
+              },
+              {
+                  "id": 21,
+                  "text": "Do you lift, bro?",
+                  "answers": [
+                  31,
+                  32
+                  ]
+              },
+              {
+                  "id": 22,
+                  "text": "Are you fancy?",
+                  "answers": [
+                  33,
+                  34
+                  ]
+              },
+              {
+                  "id": 23,
+                  "text": "Are you quirky?",
+                  "answers": [
+                  35,
+                  36
+                  ]
+              },
+              {
+                  "id": 24,
+                  "text": "Are you a student?",
+                  "answers": [
+                  37,
+                  38
+                  ]
+              },
+              {
+                  "id": 25,
+                  "text": "Are you a mild mannered suburbanite?",
+                  "answers": [
+                  39,
+                  40
+                  ]
+              },
+              {
+                  "id": 26,
+                  "text": "Do you work with your hands?",
+                  "answers": [
+                  41,
+                  42
+                  ]
+              },
+              {
+                  "id": 27,
+                  "text": "Are you at the airport?",
+                  "answers": [
+                  43,
+                  44
+                  ]
+              }
+              ],
+              "answers": [
+              {
+                  "id": 18,
+                  "text": "Kensington",
+                  "path": "question",
+                  "nextQuestionId": 20
+              },
+              {
+                  "id": 19,
+                  "text": "North",
+                  "path": "question",
+                  "nextQuestionId": 21
+              },
+              {
+                  "id": 28,
+                  "text": "South",
+                  "path": "result",
+                  "nextResultId": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+                  ]
+              },
+              {
+                  "id": 29,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  5
+                  ]
+              },
+              {
+                  "id": 30,
+                  "text": "No",
+                  "path": "question",
+                  "nextQuestionId": 21
+              },
+              {
+                  "id": 31,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  6
+                  ]
+              },
+              {
+                  "id": 32,
+                  "text": "No",
+                  "path": "question",
+                  "nextQuestionId": 22
+              },
+              {
+                  "id": 33,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  7
+                  ]
+              },
+              {
+                  "id": 34,
+                  "text": "No",
+                  "path": "question",
+                  "nextQuestionId": 23
+              },
+              {
+                  "id": 35,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  8
+                  ]
+              },
+              {
+                  "id": 36,
+                  "text": "No",
+                  "path": "result",
+                  "nextResultId": [
+                  9,
+                  10,
+                  11
+                  ]
+              },
+              {
+                  "id": 37,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  12
+                  ]
+              },
+              {
+                  "id": 38,
+                  "text": "No",
+                  "path": "question",
+                  "nextQuestionId": 25
+              },
+              {
+                  "id": 39,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  13
+                  ]
+              },
+              {
+                  "id": 40,
+                  "text": "No",
+                  "path": "question",
+                  "nextQuestionId": 26
+              },
+              {
+                  "id": 41,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  14
+                  ]
+              },
+              {
+                  "id": 42,
+                  "text": "No",
+                  "path": "question",
+                  "nextQuestionId": 27
+              },
+              {
+                  "id": 43,
+                  "text": "Yes",
+                  "path": "result",
+                  "nextResultId": [
+                  15
+                  ]
+              },
+              {
+                  "id": 44,
+                  "text": "No",
+                  "path": "result",
+                  "nextResultId": [
+                  16
+                  ]
+              }
+              ],
+              "results": [
+              {
+                  "id": 0,
+                  "text": "Jack Astor's"
+              },
+              {
+                  "id": 1,
+                  "text": "1600 Bier Hause"
+              },
+              {
+                  "id": 2,
+                  "text": "Kildare's"
+              },
+              {
+                  "id": 3,
+                  "text": "Limerick's"
+              },
+              {
+                  "id": 4,
+                  "text": "Murmur"
+              },
+              {
+                  "id": 5,
+                  "text": "Regal Beagle"
+              },
+              {
+                  "id": 6,
+                  "text": "Molly Malone's"
+              },
+              {
+                  "id": 7,
+                  "text": "Winebar"
+              },
+              {
+                  "id": 8,
+                  "text": "Container Bar"
+              },
+              {
+                  "id": 9,
+                  "text": "Kensington Pub"
+              },
+              {
+                  "id": 10,
+                  "text": "Yardhouse"
+              },
+              {
+                  "id": 11,
+                  "text": "Original Joe's"
+              },
+              {
+                  "id": 12,
+                  "text": "Kilkenny"
+              },
+              {
+                  "id": 13,
+                  "text": "Brewhouse"
+              },
+              {
+                  "id": 14,
+                  "text": "Black Bull"
+              },
+              {
+                  "id": 15,
+                  "text": "Molson Brew House"
+              },
+              {
+                  "id": 16,
+                  "text": "Woody's"
+              }
+              ]
+          }
 
         	$(document).ready( function() {
-        		populate(questions, '0');
+                populate(tree, 17);
         	});
 
-        	function select(index) {
-        		if(!Array.isArray(answers[index])) {
-        			populate(questions, answers[index]);
-        		} else {
-        			finish(answers[index]);
+        	function select(answerId) {
+                var answer = getFromTree(tree, 'answers', answerId);
+        		if(answer.path === 'question') {
+        			populate(tree, answer.nextQuestionId);
+        		} else if (answer.path === 'result') {
+        			finish(tree, answer.nextResultId);
         		};
         	}
 
-            function populate(question, questionId) {
-                var node = question[questionId];
-                $('#question').html(node.question);
+            function populate(tree, startingId) {
+                var node = getFromTree(tree, 'questions', startingId);
+                $('#question').html(node.text);
                 answerList = ''
-                answers = node.answers;
-                $.each(answers, function(index, value) {
-                    answerList += '<li class="question"><a href="" onClick="event.preventDefault(); select(\''+ index +'\');" >'+ index + '</a></li>';
+                answers = node.answers.map(function(answerId) {
+                    return getFromTree(tree, 'answers', answerId);
+                });
+                $.each(answers, function(index, answer) {
+                    answerList += '<li class="question"><a href="" onClick="event.preventDefault(); select('+ answer.id +');" >'+ answer.text + '</a></li>';
                 });
                 $('#answers').html(answerList);           
             }
 
-        	function finish(bars) {
+            function getFromTree(tree, list, id) {
+                var itemArray = tree[list].filter(function(item) {
+                    return id === item.id;
+                });
+                return itemArray[0];                
+            }
+
+        	function finish(tree, resultIds) {
         		$('#question').html("You should go to:");
         		var barList= '';
-        		$.each(bars, function(index, value) {
+                results = resultIds.map(function(resultId) {
+                    return getFromTree(tree, 'results', resultId);
+                });
+        		$.each(results, function(index, value) {
 
-        			barList += '<li class="bar">' + value + '</li>';
+        			barList += '<li class="bar">' + value.text + '</li>';
         		});
         		$('#answers').html(barList);
         	}

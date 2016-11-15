@@ -45,7 +45,7 @@ var nextResult = exports.nextResult = function nextResult(answerId, resultIds) {
 	return {
 		type: 'NEXT_RESULT',
 		answerId: answerId,
-		resultIds: resultId
+		resultIds: resultIds
 	};
 };
 
@@ -652,16 +652,22 @@ var NextResultSelect = function NextResultSelect(_ref) {
       resultIds = _ref.resultIds,
       results = _ref.results;
 
-  var value = typeof resultId !== 'undefined' ? resultId : [];
+  var selectedResults = typeof resultIds !== 'undefined' ? resultIds : [];
+  var value = selectedResults.map(function (selectedResult) {
+    var resultValue = results.filter(function (result) {
+      return selectedResult === result.id;
+    });
+    return { value: resultValue[0].id, label: resultValue[0].text };
+  });
+  console.log(value);
   var options = results.map(function (result) {
     return { value: result.id, label: result.text };
   });
   return _react2.default.createElement(_reactSelect2.default, {
     options: options,
     multi: true,
-    value: [{ value: 0, label: "rrrr" }],
+    value: value,
     onChange: function onChange(val) {
-      console.log(val);
       dispatch((0, _actions.nextResult)(answerId, val.map(function (result) {
         return result.value;
       })));
@@ -745,28 +751,7 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var preload = {
-  "questions": [{
-    "id": 3,
-    "text": "sods",
-    "answers": [4]
-  }],
-  "answers": [{
-    "id": 4,
-    "text": "fefe",
-    "path": "result"
-  }],
-  "results": [{
-    "id": 0,
-    "text": "rrrr"
-  }, {
-    "id": 1,
-    "text": "rare"
-  }, {
-    "id": 2,
-    "text": "ete"
-  }]
-};
+var preload = {};
 
 var store = (0, _redux.createStore)(_reducers2.default, preload);
 
@@ -775,9 +760,6 @@ var store = (0, _redux.createStore)(_reducers2.default, preload);
   { store: store },
   _react2.default.createElement(_App2.default, null)
 ), document.getElementById('root'));
-//setInterval(function(){
-//	console.log(store.getState());
-//}, 3000);
 
 },{"./components/App":4,"./reducers":20,"react":224,"react-dom":62,"react-redux":66,"redux":230}],18:[function(require,module,exports){
 'use strict';

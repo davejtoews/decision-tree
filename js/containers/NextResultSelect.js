@@ -12,7 +12,14 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 let NextResultSelect = ({ dispatch, answerId, resultIds, results }) => {
-  const value = (typeof resultId !== 'undefined') ? resultId : [];
+  const selectedResults = (typeof resultIds !== 'undefined') ? resultIds : [];
+  const value = selectedResults.map(function(selectedResult) {
+    const resultValue = results.filter(function(result){
+      return selectedResult === result.id;
+    })
+    return {value: resultValue[0].id, label:resultValue[0].text}; 
+  });
+  console.log(value);
   const options = results.map(function(result){
     return {value: result.id, label: result.text}
   })
@@ -20,9 +27,8 @@ let NextResultSelect = ({ dispatch, answerId, resultIds, results }) => {
     <Select 
       options={options}
       multi={true}
-      value={[{value: 0, label: "rrrr"}]}
+      value={value}
       onChange = {val => {
-        console.log(val)
         dispatch(nextResult(answerId, val.map(function(result){
           return result.value;
         })))
