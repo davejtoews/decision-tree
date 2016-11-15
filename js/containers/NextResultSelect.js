@@ -1,29 +1,33 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { nextResult } from '../actions'
+import React from 'react';
+import { connect } from 'react-redux';
+import { nextResult } from '../actions';
+import Select from 'react-select';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     answerId: ownProps.answerId,
-    resultId: ownProps.resultId,
+    resultIds: ownProps.resultIds,
     results: state.results
   }
 }
 
-let NextResultSelect = ({ dispatch, answerId, resultId, results }) => {
-  const value = (typeof resultId !== 'undefined') ? resultId : -1;
+let NextResultSelect = ({ dispatch, answerId, resultIds, results }) => {
+  const value = (typeof resultId !== 'undefined') ? resultId : [];
+  const options = results.map(function(result){
+    return {value: result.id, label: result.text}
+  })
   return (
-      <select
-        onChange = {e => {
-          dispatch(nextResult(answerId, parseInt(e.target.value)))
-        }}
-        value = {value}
-      >
-        <option value={-1}>[none]</option>
-        {results.map((result, index) =>
-          <option key={index} value={result.id}>{result.text}</option>
-        )}
-      </select>
+    <Select 
+      options={options}
+      multi={true}
+      value={[{value: 0, label: "rrrr"}]}
+      onChange = {val => {
+        console.log(val)
+        dispatch(nextResult(answerId, val.map(function(result){
+          return result.value;
+        })))
+      }}
+    />
   )
 }
 NextResultSelect = connect(mapStateToProps)(NextResultSelect)

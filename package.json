@@ -27,9 +27,16 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "autoprefixer": "^6.5.3",
+    "gulp-postcss": "^6.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-watch": "^4.3.10",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
-    "redux": "^3.6.0"
+    "react-select": "^1.0.0-rc.2",
+    "redux": "^3.6.0",
+    "sass-module-importer": "^1.2.1"
   }
 }

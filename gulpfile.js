@@ -9,11 +9,12 @@ var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
 var notify = require("gulp-notify");
 
-//var postcss = require('gulp-postcss');
-//var sass = require('gulp-sass');
-//var watch = require('gulp-watch');
-//var autoprefixer = require('autoprefixer');
-//var sourcemaps = require('gulp-sourcemaps');
+var postcss = require('gulp-postcss');
+var sass = require('gulp-sass');
+var watch = require('gulp-watch');
+var autoprefixer = require('autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
+var moduleImporter = require('sass-module-importer');
  
 function handleErrors() {
   var args = Array.prototype.slice.call(arguments);
@@ -61,24 +62,25 @@ gulp.task('scripts', function() {
 gulp.task('scripts:watch', function() {
   return buildScript(true);
 });
-
-gulp.task('default', ['scripts'/*, 'css'*/]);
-gulp.task('watch', ['scripts:watch'/*, 'css:watch'*/]);
  
-//gulp.task('css', function () {
-//    var processors = [
-//        autoprefixer
-//    ];
-//    return gulp.src('./public/scss/*.scss')
-//      .pipe(sourcemaps.init())
-//        .pipe(sass().on('error', sass.logError))
-//        .pipe(postcss(processors))
-//        .pipe(sourcemaps.write('scss/maps'))
-//        .pipe(gulp.dest('./public/'));
-//});
-//
-//gulp.task('css:watch', function () {
-//    watch('./public/scss/**/*.scss', function(){
-//        gulp.start('css');
-//    });
-//});
+gulp.task('css', function () {
+    var processors = [
+        autoprefixer
+    ];
+    return gulp.src('./styles/scss/*.scss')
+      .pipe(sass({ importer: moduleImporter() }))
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(postcss(processors))
+      .pipe(sourcemaps.write('scss/maps'))
+      .pipe(gulp.dest('./styles/'));
+});
+
+gulp.task('css:watch', function () {
+    watch('./styles/scss/**/*.scss', function(){
+        gulp.start('css');
+    });
+});
+
+gulp.task('default', ['scripts', 'css']);
+gulp.task('watch', ['scripts:watch', 'css:watch']);

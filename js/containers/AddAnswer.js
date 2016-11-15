@@ -9,18 +9,23 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 let AddAnswer = ({ dispatch, questionId }) => {
-  let input
+  let path;
+  let text;
   return (
     <form onSubmit={e => {
       e.preventDefault()
-      if (!input.value.trim()) {
+      if (!path.value.trim() || !text.value.trim()) {
         return
       }
-      dispatch(addAnswer(questionId, input.value))
-      input.value = ''
+      dispatch(addAnswer(questionId, text.value, path.value))
+      path.value = '';
+      text.value = '';
     }}>
+      <input ref={node => {
+        text = node
+      }}/>
       <select ref={node => {
-        input = node
+        path = node
       }}>
         <option value=''>[Select]</option>
         <option value='question'>Question</option>

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import NextQuestionSelect from '../containers/NextQuestionSelect';
 import NextResultSelect from '../containers/NextResultSelect';
 
-const Answer = ({ id, path, nextQuestionId, nextResultId }) => {
+const Answer = ({ id, text, path, nextQuestionId, nextResultId }) => {
 	let nextQuestionLink = '';
 	if (nextQuestionId !== undefined) {
 		nextQuestionLink = <a href={"#q" + nextQuestionId}>Go To</a>
@@ -13,12 +13,12 @@ const Answer = ({ id, path, nextQuestionId, nextResultId }) => {
 			selectElement = <NextQuestionSelect answerId={id} questionId={nextQuestionId} />
 			break;
 		case 'result':
-			selectElement = <NextResultSelect answerId={id} resultId={nextResultId} />
+			selectElement = <NextResultSelect answerId={id} resultIds={nextResultId} />
 			break;
 	}
 	return (
 	  <li>
-	    {path}
+	    {text}
 	    {selectElement}
 	    {nextQuestionLink}
 	  </li>
@@ -26,8 +26,10 @@ const Answer = ({ id, path, nextQuestionId, nextResultId }) => {
 }
 
 Answer.propTypes = {
-	path: PropTypes.string.isRequired,
-  	nextQuestionId: PropTypes.number
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+    nextQuestionId: PropTypes.number
 }
 
 export default Answer

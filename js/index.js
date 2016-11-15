@@ -5,7 +5,40 @@ import { createStore } from 'redux';
 import decisionApp from './reducers';
 import App from './components/App'
 
-let store = createStore(decisionApp)
+const preload = {
+  "questions": [
+    {
+      "id": 3,
+      "text": "sods",
+      "answers": [
+        4
+      ]
+    }
+  ],
+  "answers": [
+    {
+      "id": 4,
+      "text": "fefe",
+      "path": "result"
+    }
+  ],
+  "results": [
+    {
+      "id": 0,
+      "text": "rrrr"
+    },
+    {
+      "id": 1,
+      "text": "rare"
+    },
+    {
+      "id": 2,
+      "text": "ete"
+    }
+  ]
+}
+
+let store = createStore(decisionApp, preload);
 
 render(
   <Provider store={store}>
