@@ -7,13 +7,17 @@ import JsonState from '../containers/JsonState';
 import { connect } from 'react-redux';
 
 const App = () => (
-  <div>
-    <AddQuestion />
-    <QuestionListContainer />
-	<AddResult />
-	<ResultListContainer />
-    <JsonState />
-  </div>
+	<div>
+		<div className="question-wrapper">
+			<AddQuestion />
+			<QuestionListContainer />		
+		</div>
+		<div className="result-wrapper">
+			<AddResult />
+			<ResultListContainer />
+		</div>
+		<JsonState />
+	</div>
 )
 
 export default App

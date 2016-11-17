@@ -42,3 +42,24 @@ export const nextResult = (answerId, resultIds) => {
 		resultIds: resultIds
 	}
 }
+
+export const removeQuestion = (questionId) => {
+	return {
+		type: 'REMOVE_QUESTION',
+		id: questionId
+	}
+}
+
+export const removeAnswer = (answerId) => {
+	return {
+		type: 'REMOVE_ANSWER',
+		id: answerId
+	}
+}
+
+export const removeResult = (resultId) => {
+	return {
+		type: 'REMOVE_RESULT',
+		id: resultId
+	}
+}

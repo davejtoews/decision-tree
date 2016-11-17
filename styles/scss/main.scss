@@ -1,1 +1,27 @@
+@import 'bourbon';
+@import 'bourbon-neat';
+@import 'base/base';
 @import 'react-select';
+
+%column-block {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 1em;	
+}
+
+.question-wrapper {
+	@extend %column-block;
+
+	&:container("width >= 800px") {
+		width: 66.66666%;
+	}
+}
+
+.result-wrapper {
+	@extend %column-block;
+
+	&:container("width >=800px") {
+		width: 33.333333%;
+	}
+}

@@ -14,7 +14,6 @@ var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var autoprefixer = require('autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
-var moduleImporter = require('sass-module-importer');
  
 function handleErrors() {
   var args = Array.prototype.slice.call(arguments);
@@ -68,7 +67,7 @@ gulp.task('css', function () {
         autoprefixer
     ];
     return gulp.src('./styles/scss/*.scss')
-      .pipe(sass({ importer: moduleImporter() }))
+      .pipe(sass({ importer: require('npm-sass').importer }))
       .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
       .pipe(postcss(processors))

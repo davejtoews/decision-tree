@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import decisionApp from './reducers';
 import App from './components/App';
+import cqProlyfill from 'cq-prolyfill';
 
 const preload = {};
 
@@ -15,3 +16,5 @@ render(
   </Provider>,
   document.getElementById('root')
 );
+
+cqProlyfill();
