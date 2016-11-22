@@ -24,6 +24,10 @@ const answers = (state = [], action) => {
       return state.map(a =>
         answer(a, action)
       )
+    case 'REMOVE_RESULT':
+      return state.map(a =>
+        answer(a, action)
+      )
     default:
       return state
   }

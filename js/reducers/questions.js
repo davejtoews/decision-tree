@@ -30,7 +30,7 @@ const question = (state = {}, action) => {
         id: state.id,
         text: state.text,
         answers: state.answers.filter(a =>
-          a != action.id
+          a !== action.id
         )
       }
     default:

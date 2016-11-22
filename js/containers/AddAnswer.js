@@ -1,39 +1,47 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { addAnswer } from '../actions'
+import React from 'react';
+import { connect } from 'react-redux';
+import { addAnswer } from '../actions';
+import { changeAnswerType } from '../actions';
+import Select from 'react-select';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log({state: state, ownProps: ownProps});
   return {
-    questionId: ownProps.questionId
+    questionId: ownProps.questionId,
+    answerType: state.answerType
   }
 }
 
-let AddAnswer = ({ dispatch, questionId }) => {
-  let path;
+let AddAnswer = ({ dispatch, questionId, answerType }) => {
   let text;
+  let options = [
+    {value: 'question', label: 'Question'},
+    {value: 'result', label: 'Result'}
+  ];
   return (
     <form className="add-answer" onSubmit={e => {
       e.preventDefault()
-      if (!path.value.trim() || !text.value.trim()) {
+      if (!answerType.value.trim() || !text.value.trim()) {
         return
       }
-      dispatch(addAnswer(questionId, text.value, path.value))
-      path.value = '';
+      dispatch(addAnswer(questionId, text.value, answerType.value))
       text.value = '';
     }}>
       <input ref={node => {
         text = node
       }}/>
-      <select ref={node => {
-        path = node
-      }}>
-        <option value=''>[Select]</option>
-        <option value='question'>Question</option>
-        <option value='result'>Result</option>
-      </select>
-      <button type="submit">
-        Add Answer
-      </button>
+      <Select 
+        options={options}
+        value={answerType}
+        onChange = {val => {
+          dispatch(changeAnswerType(val));
+        }}
+      />
+      <div className="action-wrapper">
+        <button type="submit">
+          Add Answer
+        </button>
+      </div>
     </form>
   )
 }

@@ -19,7 +19,6 @@ let NextResultSelect = ({ dispatch, answerId, resultIds, results }) => {
     })
     return {value: resultValue[0].id, label:resultValue[0].text}; 
   });
-  console.log(value);
   const options = results.map(function(result){
     return {value: result.id, label: result.text}
   })

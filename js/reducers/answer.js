@@ -30,6 +30,15 @@ const answer = (state = {}, action) => {
           nextResultId: action.resultIds
         }        
       }
+    case 'REMOVE_RESULT':
+        return {
+          id: state.id,
+          text: state.text,
+          path: state.path,
+          nextResultId: state.nextResultId.filter(r =>
+            r !== action.id
+          )
+        }   
     default:
       return state
   }

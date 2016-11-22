@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { removeAnswer } from '../actions'
+import { removeResult } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -8,20 +8,20 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-let RemoveAnswer = ({ dispatch, id }) => {
+let RemoveResult = ({ dispatch, id }) => {
   return (
     <form onSubmit={e => {
       e.preventDefault()
-      dispatch(removeAnswer(id))
+      dispatch(removeResult(id))
     }}>
       <div className="action-wrapper">
         <button className="remove-button" type="submit">
-          Remove Answer
+          Remove Result
         </button>
       </div>
     </form>
   )
 }
-RemoveAnswer = connect(mapStateToProps)(RemoveAnswer)
+RemoveResult = connect(mapStateToProps)(RemoveResult)
 
-export default RemoveAnswer;
+export default RemoveResult;

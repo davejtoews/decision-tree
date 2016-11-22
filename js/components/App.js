@@ -9,12 +9,12 @@ import { connect } from 'react-redux';
 const App = () => (
 	<div>
 		<div className="question-wrapper">
-			<AddQuestion />
-			<QuestionListContainer />		
+			<QuestionListContainer />
+			<AddQuestion />		
 		</div>
 		<div className="result-wrapper">
-			<AddResult />
 			<ResultListContainer />
+			<AddResult />
 		</div>
 		<JsonState />
 	</div>

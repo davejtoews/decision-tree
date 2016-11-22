@@ -63,3 +63,10 @@ export const removeResult = (id) => {
 		id: id
 	}
 }
+
+export const changeAnswerType = (answerType) => {
+	return {
+		type: 'CHANGE_ANSWER_TYPE',
+		answerType: answerType
+	}
+}

@@ -27,6 +27,10 @@ const results = (state = [], action) => {
         ...state,
         result(undefined, action)
       ]
+    case 'REMOVE_RESULT':
+      return state.filter(r =>
+        r.id !== action.id
+      )
     default:
       return state
   }

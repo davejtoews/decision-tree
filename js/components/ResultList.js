@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
+import RemoveResult from '../containers/RemoveResult';
 
 const ResultList = ({ results }) => {
   return (
@@ -7,7 +8,8 @@ const ResultList = ({ results }) => {
       <ul>
         {results.map((result, index) =>
           <li key={index} >
-            {result.text}
+            <h5>{result.text}</h5>
+            <RemoveResult id={result.id} />
           </li>
         )}
       </ul>

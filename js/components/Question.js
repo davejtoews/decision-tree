@@ -11,10 +11,8 @@ const Question = ({ id, text, answers }) => {
 				<RemoveQuestion id={id} answers={answers} />
 			</header>
 			<div className="answer-wrapper">
-				<div className="action-wrapper">
-					<AddAnswer questionId={id} />
-				</div>
 				<AnswerListContainer questionId={id} />
+				<AddAnswer questionId={id} />
 			</div>
 		</li>
 	)
