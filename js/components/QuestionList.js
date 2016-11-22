@@ -2,14 +2,18 @@ import React, { PropTypes } from 'react'
 import Question from './Question'
 
 const QuestionList = ({ questions }) => (
-  <ul>
-    {questions.map(question =>
-      <Question
-        key={question.id}
-        {...question}
-      />
-    )}
-  </ul>
+  <div className="question-list">
+    <h2>Questions</h2>
+    <ul>
+      {questions.map(question =>
+        <Question
+          key={question.id}
+          {...question}
+        />
+      )}      
+    </ul>
+
+  </div>
 )
 
 QuestionList.propTypes = {

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import NextQuestionSelect from '../containers/NextQuestionSelect';
 import NextResultSelect from '../containers/NextResultSelect';
+import RemoveAnswer from '../containers/RemoveAnswer';
 
 const Answer = ({ id, text, path, nextQuestionId, nextResultId }) => {
 	let nextQuestionLink = '';
@@ -18,7 +19,8 @@ const Answer = ({ id, text, path, nextQuestionId, nextResultId }) => {
 	}
 	return (
 	  <li>
-	    {text}
+	    <h5>{text}</h5>
+	    <RemoveAnswer id={id} />
 	    {selectElement}
 	    {nextQuestionLink}
 	  </li>

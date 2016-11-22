@@ -12,7 +12,7 @@ let AddAnswer = ({ dispatch, questionId }) => {
   let path;
   let text;
   return (
-    <form onSubmit={e => {
+    <form className="add-answer" onSubmit={e => {
       e.preventDefault()
       if (!path.value.trim() || !text.value.trim()) {
         return

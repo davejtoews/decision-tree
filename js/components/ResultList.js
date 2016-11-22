@@ -2,13 +2,16 @@ import React, { PropTypes } from 'react'
 
 const ResultList = ({ results }) => {
   return (
-    <ul>
-      {results.map((result, index) =>
-        <li key={index} >
-          {result.text}
-        </li>
-      )}
-    </ul>
+    <div className="result-list">
+      <h2>Results</h2>
+      <ul>
+        {results.map((result, index) =>
+          <li key={index} >
+            {result.text}
+          </li>
+        )}
+      </ul>
+    </div>
   )
 }
 

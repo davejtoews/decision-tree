@@ -5,7 +5,7 @@ import { addQuestion } from '../actions'
 let AddQuestion = ({ dispatch }) => {
   let input
   return (
-    <form onSubmit={e => {
+    <form className="add-question" onSubmit={e => {
       e.preventDefault()
       if (!input.value.trim()) {
         return
@@ -16,9 +16,11 @@ let AddQuestion = ({ dispatch }) => {
       <input ref={node => {
         input = node
       }} />
-      <button type="submit">
-        Add Question
-      </button>
+      <div className="action-wrapper">
+        <button type="submit">
+          Add Question
+        </button>
+      </div>
     </form>
   )
 }

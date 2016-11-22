@@ -12,13 +12,17 @@ const answers = (state = [], action) => {
         ...state,
         answer(undefined, action)
       ]
+    case 'REMOVE_ANSWER':
+      return state.filter(a =>
+        a.id !== action.id
+      )
     case 'NEXT_QUESTION':
-      return state.map(q =>
-        answer(q, action)
+      return state.map(a =>
+        answer(a, action)
       )
     case 'NEXT_RESULT':
-      return state.map(q =>
-        answer(q, action)
+      return state.map(a =>
+        answer(a, action)
       )
     default:
       return state

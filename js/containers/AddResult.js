@@ -5,7 +5,7 @@ import { addResult } from '../actions'
 let AddResult = ({ dispatch }) => {
   let input
   return (
-    <form onSubmit={e => {
+    <form className="add-result" onSubmit={e => {
       e.preventDefault()
       if (!input.value.trim()) {
         return
@@ -16,9 +16,11 @@ let AddResult = ({ dispatch }) => {
       <input ref={node => {
         input = node
       }} />
-      <button type="submit">
-        Add Result
-      </button>
+      <div className="action-wrapper">
+        <button type="submit">
+          Add Result
+        </button>
+      </div>
     </form>
   )
 }

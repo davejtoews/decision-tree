@@ -34,3 +34,18 @@
     }
   }
 }
+
+.remove-button {
+  background-color: $warning-color;
+
+  &:hover,
+  &:focus {
+    background-color: shade($warning-color, 20%);
+  }
+
+  &:disabled {
+    &:hover {
+      background-color: $warning-color;
+    }
+  }
+}

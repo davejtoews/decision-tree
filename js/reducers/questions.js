@@ -25,6 +25,14 @@ const question = (state = {}, action) => {
           answer(undefined, action).id
         ]
       }
+    case 'REMOVE_ANSWER':
+      return {
+        id: state.id,
+        text: state.text,
+        answers: state.answers.filter(a =>
+          a != action.id
+        )
+      }
     default:
       return state
   }
@@ -42,7 +50,15 @@ const questions = (state = [], action) => {
         ...state,
         question(undefined, action)
       ]
+    case 'REMOVE_QUESTION':
+      return state.filter(q =>
+        q.id !== action.id
+      )
     case 'ADD_ANSWER':
+      return state.map(q =>
+        question(q, action)
+      )
+    case 'REMOVE_ANSWER':
       return state.map(q =>
         question(q, action)
       )

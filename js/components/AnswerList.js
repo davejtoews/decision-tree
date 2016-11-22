@@ -3,14 +3,17 @@ import Answer from './Answer'
 
 const AnswerList = ({ answers }) => {
   return (
-    <ul>
-      {answers.map((answer, index) =>
-        <Answer
-          key={index}
-          {...answer}
-        />
-      )}
-    </ul>
+    <div className="answer-list">
+      <h4>Answers</h4>
+      <ul>
+        {answers.map((answer, index) =>
+          <Answer
+            key={index}
+            {...answer}
+          />
+        )}        
+      </ul>
+    </div>
   )
 }
 
