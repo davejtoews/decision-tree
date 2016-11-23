@@ -33,6 +33,15 @@ const question = (state = {}, action) => {
           a !== action.id
         )
       }
+    case 'CHANGE_ANSWER_TYPE':
+      if (state.id === action.id) {
+        return {
+          id: state.id,
+          text: state.text,
+          answers: state.answers,
+          answerType: action.answerType
+        }
+      }
     default:
       return state
   }
@@ -59,6 +68,10 @@ const questions = (state = [], action) => {
         question(q, action)
       )
     case 'REMOVE_ANSWER':
+      return state.map(q =>
+        question(q, action)
+      )
+    case 'CHANGE_ANSWER_TYPE':
       return state.map(q =>
         question(q, action)
       )

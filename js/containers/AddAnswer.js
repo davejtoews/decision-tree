@@ -5,10 +5,9 @@ import { changeAnswerType } from '../actions';
 import Select from 'react-select';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log({state: state, ownProps: ownProps});
   return {
     questionId: ownProps.questionId,
-    answerType: state.answerType
+    answerType: ownProps.answerType
   }
 }
 
@@ -34,7 +33,7 @@ let AddAnswer = ({ dispatch, questionId, answerType }) => {
         options={options}
         value={answerType}
         onChange = {val => {
-          dispatch(changeAnswerType(val));
+          dispatch(changeAnswerType(questionId, val));
         }}
       />
       <div className="action-wrapper">

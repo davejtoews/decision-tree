@@ -1,6 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { nextQuestion } from '../actions'
+import React from 'react';
+import { connect } from 'react-redux';
+import { nextQuestion } from '../actions';
+import Select from 'react-select';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -12,18 +13,17 @@ const mapStateToProps = (state, ownProps) => {
 
 let NextQuestionSelect = ({ dispatch, answerId, questionId, questions }) => {
   const value = (typeof questionId !== 'undefined') ? questionId : -1;
+  let options = questions.map((question, index) => {
+    return { value: question.id, label: question.text} ;
+  });
   return (
-      <select
-        onChange = {e => {
-          dispatch(nextQuestion(answerId, parseInt(e.target.value)))
-        }}
-        value = {value}
-      >
-        <option value={-1}>[none]</option>
-        {questions.map((question, index) =>
-          <option key={index} value={question.id}>{question.text}</option>
-        )}
-      </select>
+    <Select 
+      options={options}
+      value={value}
+      onChange = {val => {
+        dispatch(nextQuestion(answerId, parseInt(val.value)))
+      }}
+    />   
   )
 }
 NextQuestionSelect = connect(mapStateToProps)(NextQuestionSelect)

@@ -20,7 +20,8 @@ QuestionList.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf(PropTypes.number)
+    answers: PropTypes.arrayOf(PropTypes.number),
+    answerType: PropTypes.object
   }).isRequired).isRequired
 }
 

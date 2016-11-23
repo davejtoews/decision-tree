@@ -3,7 +3,7 @@ import AddAnswer from '../containers/AddAnswer';
 import RemoveQuestion from '../containers/RemoveQuestion';
 import AnswerListContainer from '../containers/AnswerListContainer';
 
-const Question = ({ id, text, answers }) => {
+const Question = ({ id, text, answers, answerType }) => {
 	return (
 		<li id={"q" + id}>
 			<header className="question-header">
@@ -12,7 +12,7 @@ const Question = ({ id, text, answers }) => {
 			</header>
 			<div className="answer-wrapper">
 				<AnswerListContainer questionId={id} />
-				<AddAnswer questionId={id} />
+				<AddAnswer questionId={id} answerType={answerType} />
 			</div>
 		</li>
 	)
@@ -21,7 +21,8 @@ const Question = ({ id, text, answers }) => {
 Question.propTypes = {
   id: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
-  answers: PropTypes.arrayOf(PropTypes.number)
+  answers: PropTypes.arrayOf(PropTypes.number),
+  answerType: PropTypes.object
 }
 
 export default Question
